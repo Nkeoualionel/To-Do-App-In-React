@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 import logo from './logo.svg';
 import './App.css';
+import ListItems from './components/ListItems'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import {faTrash} from '@fortawesome/free-solid-svg-icons'
 
+library.add(faTrash);
 class App extends Component {
 
   constructor(props){
@@ -32,9 +36,8 @@ class App extends Component {
   addItem(e){
       e.preventDefault();
       const newItem = this.state.currentItem;
-      console.log(newItem)
       if(newItem.text !== ""){
-          const items = [...this.state.items, newItems];
+          const newItems = [...this.state.items, newItem];
           this.setState({
               items: newItems,
               currentItem:{
@@ -59,7 +62,8 @@ class App extends Component {
                   <button type="submit">ADD</button>
               </form>
           </header>
-  
+
+          <ListItems items={this.state.items}></ListItems>
       </div>
     );
   }
